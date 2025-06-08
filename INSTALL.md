@@ -79,35 +79,34 @@ python -c "import secrets; print(secrets.token_hex(32))"
 
 Copy the generated value and add it to your `.env.local` file as the `CSRF_SECRET` value.
 
-#### Google OAuth Authentication
+#### GitHub OAuth Authentication
 
 1. Go to your Supabase project dashboard
 2. Navigate to Authentication > Providers
-3. Find the "Google" provider
+3. Find the "GitHub" provider
 4. Enable it by toggling the switch
-5. Configure the Google OAuth credentials:
-   - You'll need to set up OAuth 2.0 credentials in the Google Cloud Console
+5. Configure the GitHub OAuth credentials:
+   - You'll need to set up OAuth App credentials in GitHub
    - Add your application's redirect URL: https://[YOUR_PROJECT_REF].supabase.co/auth/v1/callback
-   - Get the Client ID and Client Secret from Google Cloud Console
-   - Add these credentials to the Google provider settings in Supabase
+   - Get the Client ID and Client Secret from GitHub
+   - Add these credentials to the GitHub provider settings in Supabase
 
-Here are the detailed steps to set up Google OAuth:
+Here are the detailed steps to set up GitHub OAuth:
 
-1. Go to the Google Cloud Console
-2. Create a new project or select an existing one
-3. Enable the Google+ API
-4. Go to Credentials > Create Credentials > OAuth Client ID
-5. Configure the OAuth consent screen if you haven't already
-6. Set the application type as "Web application"
-7. Add these authorized redirect URIs:
-
-- https://[YOUR_PROJECT_REF].supabase.co/auth/v1/callback
-- http://localhost:3000/auth/callback (for local development)
-
-8. Copy the Client ID and Client Secret
-9. Go back to your Supabase dashboard
-10. Paste the Client ID and Client Secret in the Google provider settings
-11. Save the changes
+1. Go to GitHub and navigate to Settings > Developer settings > OAuth Apps
+2. Click "New OAuth App"
+3. Fill in the application details:
+   - Application name: Your app name (e.g., "Zola")
+   - Homepage URL: Your app's homepage
+   - Application description: Optional description
+   - Authorization callback URL: https://[YOUR_PROJECT_REF].supabase.co/auth/v1/callback
+4. For local development, you may need to create a separate OAuth app with:
+   - Authorization callback URL: http://localhost:3000/auth/callback
+5. Click "Register application"
+6. Copy the Client ID and generate a Client Secret
+7. Go back to your Supabase dashboard
+8. Paste the Client ID and Client Secret in the GitHub provider settings
+9. Save the changes
 
 #### Guest user setup
 

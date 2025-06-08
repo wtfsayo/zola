@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { PopoverContent } from "@/components/ui/popover"
 import Image from "next/image"
 import React, { useState } from "react"
-import { signInWithGoogle } from "../../../lib/api"
+import { signInWithGitHub } from "../../../lib/api"
 import { APP_NAME } from "../../../lib/config"
 import { createClient } from "../../../lib/supabase/client"
 import { isSupabaseEnabled } from "../../../lib/supabase/config"
@@ -17,7 +17,7 @@ export function PopoverContentAuth() {
     return null
   }
 
-  const handleSignInWithGoogle = async () => {
+  const handleSignInWithGitHub = async () => {
     const supabase = createClient()
 
     if (!supabase) {
@@ -28,7 +28,7 @@ export function PopoverContentAuth() {
       setIsLoading(true)
       setError(null)
 
-      const data = await signInWithGoogle(supabase)
+      const data = await signInWithGitHub(supabase)
 
       // Redirect to the provider URL
       if (data?.url) {
@@ -73,17 +73,17 @@ export function PopoverContentAuth() {
           variant="secondary"
           className="w-full text-base"
           size="lg"
-          onClick={handleSignInWithGoogle}
+          onClick={handleSignInWithGitHub}
           disabled={isLoading}
         >
           <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google logo"
+            src="https://github.com/favicon.ico"
+            alt="GitHub logo"
             width={20}
             height={20}
             className="mr-2 size-4"
           />
-          <span>{isLoading ? "Connecting..." : "Continue with Google"}</span>
+          <span>{isLoading ? "Connecting..." : "Continue with GitHub"}</span>
         </Button>
       </div>
     </PopoverContent>

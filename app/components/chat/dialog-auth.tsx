@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { signInWithGoogle } from "@/lib/api"
+import { signInWithGitHub } from "@/lib/api"
 import { createClient } from "@/lib/supabase/client"
 import { isSupabaseEnabled } from "@/lib/supabase/config"
 
@@ -34,12 +34,12 @@ export function DialogAuth({ open, setOpen }: DialogAuthProps) {
     return null
   }
 
-  const handleSignInWithGoogle = async () => {
+  const handleSignInWithGitHub = async () => {
     try {
       setIsLoading(true)
       setError(null)
 
-      const data = await signInWithGoogle(supabase)
+      const data = await signInWithGitHub(supabase)
 
       // Redirect to the provider URL
       if (data?.url) {
@@ -77,17 +77,17 @@ export function DialogAuth({ open, setOpen }: DialogAuthProps) {
             variant="secondary"
             className="w-full text-base"
             size="lg"
-            onClick={handleSignInWithGoogle}
+            onClick={handleSignInWithGitHub}
             disabled={isLoading}
           >
             <img
-              src="https://www.google.com/favicon.ico"
-              alt="Google logo"
+              src="https://github.com/favicon.ico"
+              alt="GitHub logo"
               width={20}
               height={20}
               className="mr-2 size-4"
             />
-            <span>{isLoading ? "Connecting..." : "Continue with Google"}</span>
+            <span>{isLoading ? "Connecting..." : "Continue with GitHub"}</span>
           </Button>
         </DialogFooter>
       </DialogContent>

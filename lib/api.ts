@@ -104,9 +104,9 @@ export async function updateChatModel(chatId: string, model: string) {
 }
 
 /**
- * Signs in user with Google OAuth via Supabase
+ * Signs in user with GitHub OAuth via Supabase
  */
-export async function signInWithGoogle(supabase: SupabaseClient) {
+export async function signInWithGitHub(supabase: SupabaseClient) {
   try {
     const isDev = process.env.NODE_ENV === "development"
 
@@ -120,13 +120,9 @@ export async function signInWithGoogle(supabase: SupabaseClient) {
           : APP_DOMAIN
 
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
+      provider: "github",
       options: {
         redirectTo: `${baseUrl}/auth/callback`,
-        queryParams: {
-          access_type: "offline",
-          prompt: "consent",
-        },
       },
     })
 
@@ -137,7 +133,7 @@ export async function signInWithGoogle(supabase: SupabaseClient) {
     // Return the provider URL
     return data
   } catch (err) {
-    console.error("Error signing in with Google:", err)
+    console.error("Error signing in with GitHub:", err)
     throw err
   }
 }

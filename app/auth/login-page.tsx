@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { signInWithGoogle } from "@/lib/api"
+import { signInWithGitHub } from "@/lib/api"
 import { createClient } from "@/lib/supabase/client"
 
 import Link from "next/link"
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  async function handleSignInWithGoogle() {
+  async function handleSignInWithGitHub() {
     const supabase = createClient()
 
     if (!supabase) {
@@ -23,7 +23,7 @@ export default function LoginPage() {
       setIsLoading(true)
       setError(null)
 
-      const data = await signInWithGoogle(supabase)
+      const data = await signInWithGitHub(supabase)
 
       // Redirect to the provider URL
       if (data?.url) {
@@ -64,18 +64,18 @@ export default function LoginPage() {
               variant="secondary"
               className="w-full text-base sm:text-base"
               size="lg"
-              onClick={handleSignInWithGoogle}
+              onClick={handleSignInWithGitHub}
               disabled={isLoading}
             >
               <img
-                src="https://www.google.com/favicon.ico"
-                alt="Google logo"
+                src="https://github.com/favicon.ico"
+                alt="GitHub logo"
                 width={20}
                 height={20}
                 className="mr-2 size-4"
               />
               <span>
-                {isLoading ? "Connecting..." : "Continue with Google"}
+                {isLoading ? "Connecting..." : "Continue with GitHub"}
               </span>
             </Button>
           </div>
