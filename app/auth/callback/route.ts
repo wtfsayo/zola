@@ -40,17 +40,20 @@ export async function GET(request: Request) {
   }
 
   const user = data?.user
-  if (!user || !user.id || !user.email) {
+  if (!user || !user.id) {
     return NextResponse.redirect(
       `${origin}/auth/error?message=${encodeURIComponent("Missing user info")}`
     )
   }
 
+  // Use email from user metadata if primary email is not available
+  const userEmail = user.email || user.user_metadata?.email || `${user.id}@github.local`
+
   try {
     // Try to insert user only if not exists
     const { error: insertError } = await supabaseAdmin.from("users").insert({
       id: user.id,
-      email: user.email,
+      email: userEmail,
       created_at: new Date().toISOString(),
       message_count: 0,
       premium: false,
