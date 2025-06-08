@@ -4,6 +4,7 @@ import { mistral, createMistral } from "@ai-sdk/mistral"
 import { openai, createOpenAI } from "@ai-sdk/openai"
 import type { LanguageModelV1 } from "@ai-sdk/provider"
 import { xai, createXai } from "@ai-sdk/xai"
+import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { getProviderForModel } from "./provider-map"
 
 import type {
@@ -66,6 +67,17 @@ export function openproviders<T extends SupportedModel>(
   apiKey?: string
 ): LanguageModelV1 {
   const provider = getProviderForModel(modelId)
+
+  if (provider === "openrouter") {
+    if (apiKey) {
+      const openrouterProvider = createOpenRouter({ apiKey })
+      return openrouterProvider.chat(modelId as string)
+    }
+    const openrouterProvider = createOpenRouter({ 
+      apiKey: process.env.OPENROUTER_API_KEY 
+    })
+    return openrouterProvider.chat(modelId as string)
+  }
 
   if (provider === "openai") {
     if (apiKey) {

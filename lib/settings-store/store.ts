@@ -4,6 +4,12 @@ import { SettingsState, SettingsActions, ProviderSettings, OpenAICompatibleProvi
 
 const defaultProviders: ProviderSettings[] = [
   {
+    id: 'openrouter',
+    name: 'OpenRouter',
+    enabled: true,
+    type: 'openai-compatible',
+  },
+  {
     id: 'openai',
     name: 'OpenAI',
     enabled: true,

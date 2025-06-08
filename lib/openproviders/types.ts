@@ -113,7 +113,7 @@ export type StaticOllamaModel =
 // Dynamic Ollama model type - allows any string for auto-detected models
 export type OllamaModel = StaticOllamaModel | (string & {})
 
-export type Provider = "openai" | "mistral" | "google" | "anthropic" | "xai" | "ollama"
+export type Provider = "openrouter" | "openai" | "mistral" | "google" | "anthropic" | "xai" | "ollama"
 
 export type SupportedModel =
   | OpenAIModel

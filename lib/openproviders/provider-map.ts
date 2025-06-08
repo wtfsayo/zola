@@ -2,6 +2,22 @@ import type { Provider, SupportedModel } from "./types"
 
 // map each model ID to its provider
 const MODEL_PROVIDER_MAP: Record<string, Provider> = {
+  // OpenRouter models
+  "openai/gpt-4o-mini": "openrouter",
+  "openai/gpt-4o": "openrouter",
+  "anthropic/claude-3.5-sonnet": "openrouter",
+  "anthropic/claude-3-haiku": "openrouter",
+  "meta-llama/llama-3.1-8b-instruct": "openrouter",
+  "meta-llama/llama-3.1-70b-instruct": "openrouter",
+  "meta-llama/llama-3.1-405b-instruct": "openrouter",
+  "mistralai/mistral-7b-instruct": "openrouter",
+  "mistralai/mixtral-8x7b-instruct": "openrouter",
+  "google/gemini-pro": "openrouter",
+  "google/gemini-pro-vision": "openrouter",
+  "cohere/command-r-plus": "openrouter",
+  "perplexity/llama-3.1-sonar-large-128k-online": "openrouter",
+  "qwen/qwen-2.5-72b-instruct": "openrouter",
+  "deepseek/deepseek-chat": "openrouter",
   "o1": "openai",
   "o1-2024-12-17": "openai",
   "o1-mini": "openai",

@@ -2,7 +2,7 @@ import { createClient } from "./supabase/server"
 import { decryptKey } from "./encryption"
 import { env } from "./openproviders/env"
 
-export type Provider = "openai" | "mistral" | "google" | "anthropic" | "xai"
+export type Provider = "openrouter" | "openai" | "mistral" | "google" | "anthropic" | "xai"
 
 export async function getUserKey(userId: string, provider: Provider): Promise<string | null> {
   try {
@@ -32,6 +32,7 @@ export async function getEffectiveApiKey(userId: string | null, provider: Provid
   }
 
   const envKeyMap: Record<Provider, string | undefined> = {
+    openrouter: env.OPENROUTER_API_KEY,
     openai: env.OPENAI_API_KEY,
     mistral: env.MISTRAL_API_KEY,
     google: env.GOOGLE_GENERATIVE_AI_API_KEY,

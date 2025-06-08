@@ -1,4 +1,5 @@
 export const env = {
+  OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY!,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY!,
   MISTRAL_API_KEY: process.env.MISTRAL_API_KEY!,
   GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
@@ -8,6 +9,7 @@ export const env = {
 
 export function createEnvWithUserKeys(userKeys: Record<string, string> = {}): typeof env {
   return {
+    OPENROUTER_API_KEY: userKeys.openrouter || env.OPENROUTER_API_KEY,
     OPENAI_API_KEY: userKeys.openai || env.OPENAI_API_KEY,
     MISTRAL_API_KEY: userKeys.mistral || env.MISTRAL_API_KEY,
     GOOGLE_GENERATIVE_AI_API_KEY: userKeys.google || env.GOOGLE_GENERATIVE_AI_API_KEY,

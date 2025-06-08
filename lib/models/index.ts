@@ -4,10 +4,12 @@ import { grokModels } from "./data/grok"
 import { mistralModels } from "./data/mistral"
 import { ollamaModels, getOllamaModels } from "./data/ollama"
 import { openaiModels } from "./data/openai"
+import { openrouterModels } from "./data/openrouter"
 import { ModelConfig } from "./types"
 
-// Static models (always available)
+// Static models (always available) - OpenRouter models first as default
 export const STATIC_MODELS: ModelConfig[] = [
+  ...openrouterModels, // OpenRouter models first (default provider)
   ...openaiModels,
   ...mistralModels,
   ...deepseekModels,

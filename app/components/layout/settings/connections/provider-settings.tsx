@@ -52,6 +52,9 @@ export function ProviderSettings() {
           const data = await response.json()
           data.keys.forEach((key: { provider: string; maskedKey: string }) => {
             switch (key.provider) {
+              case "openrouter":
+                setOpenRouterAPIKey(key.maskedKey)
+                break
               case "openai":
                 setOpenaiAPIKey(key.maskedKey)
                 break
@@ -88,6 +91,7 @@ export function ProviderSettings() {
     setIsLoading(true)
     try {
       const keysToSave = [
+        { provider: "openrouter", key: openRouterAPIKey },
         { provider: "openai", key: openaiAPIKey },
         { provider: "mistral", key: mistralAPIKey },
         { provider: "google", key: googleAPIKey },

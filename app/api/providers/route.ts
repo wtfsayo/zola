@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
     const apiKey = await getEffectiveApiKey(userId, provider as Provider)
     
     const envKeyMap: Record<Provider, string | undefined> = {
+      openrouter: process.env.OPENROUTER_API_KEY,
       openai: process.env.OPENAI_API_KEY,
       mistral: process.env.MISTRAL_API_KEY,
       google: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
